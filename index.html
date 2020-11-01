@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>Title</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    </head>
+    <body>
+        <h3>
+            Dictinary App using VueJs
+        </h3>
+        <div id="app">
+            <table>
+                <tbody>
+                    <tr>
+                        <td colspan="2" class="full center bold">
+                            Search
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input 
+                                type="text" 
+                                v-model="searchInput" 
+                                v-on:input="search()"
+                                class="full"
+                            >
+                        </td>
+                    </tr>
+                    <tr class="bold">
+                        <td class="center">Word</td>
+                        <td class="center">Translation</td>
+                    </tr>
+                    <template v-if="!searching">
+                        <tr v-for="word in words">
+                            <td>
+                                {{ word.word }}
+                            </td>
+                            <td>
+                                {{ word.trans }}
+                            </td>
+                        </tr>
+                    </template>
+                    <template v-else>
+                        <tr v-for="word in searchedWords">
+                            <td>
+                                {{ word.word }}
+                            </td>
+                            <td>
+                                {{ word.trans }}
+                            </td>
+                        </tr>
+                        <tr v-if="searchedWords.length === 0">
+                            <td colspan="2">
+                                No words found
+                            </td>
+                        </tr>
+                    </template>
+                    <tr>
+                        <td colspan="2" class="full center">
+                            Add new word
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" v-model="wordInput" id="wordInput">
+                        </td>
+                        <td>
+                            <input type="text" v-model="transInput" id="transInput">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button v-on:click="addNewWord()" class="full bold">
+                                Add New
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script src="./index.js"></script>
+    </body>
+</html>
